@@ -15,13 +15,12 @@ import { nanoid } from "nanoid";
 export default function PlanAddNew() {
   // short method to get today's date
   const todayDate = new Date().toISOString().split("T")[0];
-  const todayTime = new Date().toISOString().split("T")[1];
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState(todayDate);
   const [endDate, setEndDate] = useState(todayDate);
-  const [startTime, setStartTime] = useState(todayTime);
-  const [endTime, setEndTime] = useState(todayTime);
+  const [startTime, setStartTime] = useState(0);
+  const [endTime, setEndTime] = useState(0);
   const [description, setDescription] = useState("");
 
   const handleFormSubmit = () => {
@@ -77,12 +76,11 @@ export default function PlanAddNew() {
     <>
       <Header />
       <Container maxWidth="sm">
-        <Typography variant="h3">Add A Plan</Typography>
+        <Typography variant="h4" sx={{ color: "#3f51b5" }}>
+          Add A Plan
+        </Typography>
         <Card
           sx={{
-            backgroundColor: "#3f51b5",
-
-            borderRadius: "10px",
             marginTop: "20px",
             padding: "20px",
           }}
@@ -91,8 +89,7 @@ export default function PlanAddNew() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  sx={{ backgroundColor: "#fafafa" }}
-                  label="name"
+                  label="Title"
                   variant="outlined"
                   fullWidth
                   value={name}
@@ -103,7 +100,6 @@ export default function PlanAddNew() {
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  sx={{ backgroundColor: "#fafafa" }}
                   type="date"
                   label="Start Date"
                   variant="outlined"
@@ -116,7 +112,6 @@ export default function PlanAddNew() {
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  sx={{ backgroundColor: "#fafafa" }}
                   color="primary"
                   type="date"
                   label="End Date"
@@ -130,7 +125,6 @@ export default function PlanAddNew() {
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  sx={{ backgroundColor: "#fafafa" }}
                   type="time"
                   label="Start Time"
                   variant="outlined"
@@ -143,7 +137,6 @@ export default function PlanAddNew() {
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  sx={{ backgroundColor: "#fafafa" }}
                   type="time"
                   label="End Time"
                   variant="outlined"
@@ -156,7 +149,6 @@ export default function PlanAddNew() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  sx={{ backgroundColor: "#fafafa" }}
                   type="text"
                   label="description"
                   placeholder="Your description here..."

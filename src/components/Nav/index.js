@@ -17,7 +17,6 @@ export default function Navi() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Daily Planner
           </Typography>
-          <Button color="inherit">New Plan</Button>
         </Toolbar>
       </AppBar>
     </Box>

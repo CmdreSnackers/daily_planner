@@ -11,26 +11,34 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import LocalAtmIcon from "@mui/icons-material/LocalAtm";
-
+import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
+import DescriptionIcon from "@mui/icons-material/Description";
 export default function PlanCard(props) {
   const { plan, type = "list" } = props;
   return (
     <Card>
       <CardContent>
-        <Typography variant="h6">{plan.name}</Typography>
+        <Typography variant="h6" sx={{ color: "#3f51b5" }}>
+          {plan.name}
+        </Typography>
         <List>
           <ListItem>
             <ListItemIcon>
-              <CalendarMonthIcon />
+              <CalendarMonthIcon sx={{ color: "#3f51b5" }} />
             </ListItemIcon>
             <ListItemText primary={plan.start_date + " - " + plan.end_date} />
           </ListItem>
           <ListItem>
             <ListItemIcon>
-              <LocalAtmIcon />
+              <AccessAlarmIcon sx={{ color: "#3f51b5" }} />
             </ListItemIcon>
-            <ListItemText primary={plan.timeline} />
+            <ListItemText primary={plan.start_time + " - " + plan.end_time} />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <DescriptionIcon sx={{ color: "#3f51b5" }} />
+            </ListItemIcon>
+            <ListItemText primary={plan.description} />
           </ListItem>
         </List>
       </CardContent>
@@ -38,9 +46,14 @@ export default function PlanCard(props) {
         <Box display="flex" justifyContent="center" width="100%">
           {/* conditional rendering */}
           {type === "list" ? (
-            <Button component={Link} to={`/plan/${plan.id}`}>
-              View Plan
-            </Button>
+            <>
+              <Button component={Link} to={`/plan/${plan.id}`}>
+                View Plan
+              </Button>
+              <Button component={Link} to={`/plan/${plan.id}`}>
+                Delete Plan
+              </Button>
+            </>
           ) : (
             <Button component={Link} to={`/plan/${plan.id}/edit`}>
               Edit Plan
