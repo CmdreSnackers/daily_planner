@@ -120,7 +120,15 @@ export default function Home() {
             {plans.map((plan) => {
               return (
                 <Grid item xs={12} sm={6} md={4} key={plan.id}>
-                  <PlanCard plan={plan} type="list" />
+                  <PlanCard
+                    plan={plan}
+                    type="list"
+                    deleteHandler={() => {
+                      const updatePlan = plans.filter((p) => p.id !== plan.id);
+                      setPlans(updatePlan);
+                      localStorage.setItem("plans", JSON.stringify(updatePlan));
+                    }}
+                  />
                 </Grid>
               );
             })}

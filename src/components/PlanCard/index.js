@@ -14,7 +14,9 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import DescriptionIcon from "@mui/icons-material/Description";
 export default function PlanCard(props) {
-  const { plan, type = "list" } = props;
+  // const { planUpdates = [], onUpdate } = props;
+  const { plan, type = "list", deleteHandler } = props;
+
   return (
     <Card>
       <CardContent>
@@ -50,9 +52,7 @@ export default function PlanCard(props) {
               <Button component={Link} to={`/plan/${plan.id}`}>
                 View Plan
               </Button>
-              <Button component={Link} to={`/plan/${plan.id}`}>
-                Delete Plan
-              </Button>
+              <Button onClick={deleteHandler}>Delete Plan</Button>
             </>
           ) : (
             <Button component={Link} to={`/plan/${plan.id}/edit`}>
