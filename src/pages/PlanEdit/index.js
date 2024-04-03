@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import TextField from "@mui/material/TextField";
+import useCustomSnackbar from "../../components/useCustomSnackbar";
 
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
@@ -13,8 +14,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import BottomNav from "../../components/BottomNav";
 
-
 export default function PlanEdit() {
+  const snackbar = useCustomSnackbar();
   const navigate = useNavigate();
   const { id } = useParams();
   const plans = JSON.parse(localStorage.getItem("plans"));
@@ -31,7 +32,6 @@ export default function PlanEdit() {
   const [endTime, setEndTime] = useState(plan ? plan.end_time : 0);
   const [description, setDescription] = useState(plan ? plan.description : "");
   const handleFormSubmit = () => {
-
     let error = "";
 
     if (
@@ -41,17 +41,12 @@ export default function PlanEdit() {
       startTime === "" ||
       endTime === ""
     ) {
-      error = "Please fill up all the details";
+      snackbar.showMessage("Please fill up all the details");
     }
-    if (startDate > endDate) {
-      error = "Your end date must be after the start date";
-    }
-
 
     if (error !== "") {
       alert(error);
     } else {
-
       const updatedPlans = plans.map((p) => {
         if (p.id === id) {
           return {
@@ -67,10 +62,11 @@ export default function PlanEdit() {
         return p;
       });
 
-
       localStorage.setItem("plans", JSON.stringify(updatedPlans));
 
       navigate("/");
+
+      snackbar.showSuccess("Plan has successfully been updated.");
     }
   };
   return (
