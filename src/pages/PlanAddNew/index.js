@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Header from "../../components/Nav";
 import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
+import BottomNav from "../../components/BottomNav";
 
 export default function PlanAddNew() {
   // short method to get today's date
@@ -159,6 +160,7 @@ export default function PlanAddNew() {
           </CardActions>
         </Card>
       </Container>
+      <BottomNav />
     </>
   );
 }
