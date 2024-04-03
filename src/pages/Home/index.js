@@ -19,7 +19,8 @@ export default function Home() {
   const [plans, setPlans] = useState(plansData);
   // filter by date
   //* valueof is epoch timestamp (time in seconds)
-  const currentTimestamp = new Date().valueOf();
+  const todayDate = new Date().toISOString().split("T")[0];
+  const currentTimestamp = new Date(todayDate).valueOf();
   const nextDayTimestamp = currentTimestamp + 1 * 24 * 3600 * 1000;
   // upcoming plans should be within a day
   const todaysPlan = plansData.filter((p) => {
@@ -27,7 +28,7 @@ export default function Home() {
     const startDateInTimestamp = new Date(p.start_date).valueOf();
     // filter the date that is within 1 day
     if (
-      // startDateInTimestamp > currentTimestamp &&
+      startDateInTimestamp >= currentTimestamp &&
       startDateInTimestamp < nextDayTimestamp
     ) {
       return true;
@@ -87,14 +88,21 @@ export default function Home() {
           variant="h3"
           sx={{ color: "#3f51b5", marginBottom: "20px" }}
         >
-          Tomorrow's Plan's
+          All Plan's
         </Typography>
         {plans.length > 0 ? (
           <Grid container spacing={2}>
             {plans
-              .filter(
-                (plan) => plan.startDateInTimestamp < plan.nextDayTimestamp
-              )
+              .filter((p) => {
+                const startDateInTimestamp = new Date(p.start_date).valueOf();
+                if (
+                  startDateInTimestamp >= currentTimestamp &&
+                  startDateInTimestamp < nextDayTimestamp
+                ) {
+                  return false;
+                }
+                return true;
+              })
               .map((plan) => {
                 return (
                   <Grid item xs={12} sm={6} md={4} key={plan.id}>
@@ -140,7 +148,7 @@ export default function Home() {
           variant="h3"
           sx={{ color: "#3f51b5", marginBottom: "20px" }}
         >
-          Past Uncompleted Plan's
+          Uncompleted Plan's
         </Typography>
         {plans.length > 0 ? (
           <Grid container spacing={2}>

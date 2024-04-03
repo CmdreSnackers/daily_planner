@@ -27,7 +27,7 @@ export default function PlanCard(props) {
             <ListItemIcon>
               <CalendarMonthIcon sx={{ color: "#3f51b5" }} />
             </ListItemIcon>
-            <ListItemText primary={plan.start_date + " - " + plan.end_date} />
+            <ListItemText primary={plan.start_date} />
           </ListItem>
           <ListItem>
             <ListItemIcon>

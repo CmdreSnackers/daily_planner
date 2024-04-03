@@ -5,12 +5,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import TextField from "@mui/material/TextField";
-// import InputAdornment from "@mui/material/InputAdornment";
+
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Header from "../../components/Nav";
 import { useNavigate, useParams } from "react-router-dom";
-import { nanoid } from "nanoid";
+
+import BottomNav from "../../components/BottomNav";
+
 
 export default function PlanEdit() {
   const navigate = useNavigate();
@@ -29,9 +31,9 @@ export default function PlanEdit() {
   const [endTime, setEndTime] = useState(plan ? plan.end_time : 0);
   const [description, setDescription] = useState(plan ? plan.description : "");
   const handleFormSubmit = () => {
-    // 1. validate the input fields
+
     let error = "";
-    // make sure all fields are filled
+
     if (
       description === "" ||
       startDate === "" ||
@@ -44,12 +46,12 @@ export default function PlanEdit() {
     if (startDate > endDate) {
       error = "Your end date must be after the start date";
     }
-    // if error is not empty, trigger the error alert
+
+
     if (error !== "") {
       alert(error);
     } else {
-      // if error is empty, meaning that everything is good to go
-      // 2. create a new trip object
+
       const updatedPlans = plans.map((p) => {
         if (p.id === id) {
           return {
@@ -65,9 +67,9 @@ export default function PlanEdit() {
         return p;
       });
 
-      // 5. store the updated trips array into local storage
+
       localStorage.setItem("plans", JSON.stringify(updatedPlans));
-      // 6. redirect back to home page
+
       navigate("/");
     }
   };
@@ -173,6 +175,7 @@ export default function PlanEdit() {
           </CardActions>
         </Card>
       </Container>
+      <BottomNav />
     </>
   );
 }

@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Nav from "../../components/Nav";
 import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
+import BottomNav from "../../components/BottomNav";
 
 export default function PlanAddNew() {
   // short method to get today's date
@@ -18,7 +19,6 @@ export default function PlanAddNew() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState(todayDate);
-  const [endDate, setEndDate] = useState(todayDate);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
   const [description, setDescription] = useState("");
@@ -30,16 +30,15 @@ export default function PlanAddNew() {
     if (
       description === "" ||
       startDate === "" ||
-      endDate === "" ||
       startTime === "" ||
       endTime === ""
     ) {
       error = "Please fill up all the details";
     }
 
-    if (startDate > endDate) {
-      error = "Your end date must be after the start date";
-    }
+    // if (startDate > endDate) {
+    //   error = "Your end date must be after the start date";
+    // }
 
     // if error is not empty, trigger the error alert
     if (error !== "") {
@@ -51,7 +50,6 @@ export default function PlanAddNew() {
         id: nanoid(),
         name: name,
         start_date: startDate,
-        end_date: endDate,
         start_time: startTime,
         end_time: endTime,
         description,
@@ -98,10 +96,10 @@ export default function PlanAddNew() {
                   }}
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <TextField
                   type="date"
-                  label="Start Date"
+                  label="Date"
                   variant="outlined"
                   fullWidth
                   value={startDate}
@@ -110,19 +108,7 @@ export default function PlanAddNew() {
                   }}
                 />
               </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  color="primary"
-                  type="date"
-                  label="End Date"
-                  variant="outlined"
-                  fullWidth
-                  value={endDate}
-                  onChange={(event) => {
-                    setEndDate(event.target.value);
-                  }}
-                />
-              </Grid>
+
               <Grid item xs={6}>
                 <TextField
                   type="time"
@@ -150,7 +136,7 @@ export default function PlanAddNew() {
               <Grid item xs={12}>
                 <TextField
                   type="text"
-                  label="description"
+                  label="Description"
                   placeholder="Your description here..."
                   variant="outlined"
                   fullWidth
@@ -174,6 +160,7 @@ export default function PlanAddNew() {
           </CardActions>
         </Card>
       </Container>
+      <BottomNav />
     </>
   );
 }
