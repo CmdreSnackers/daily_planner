@@ -5,11 +5,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import TextField from "@mui/material/TextField";
+
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Header from "../../components/Nav";
 import { useNavigate, useParams } from "react-router-dom";
+
 import BottomNav from "../../components/BottomNav";
+
 
 export default function PlanEdit() {
   const navigate = useNavigate();
@@ -28,6 +31,7 @@ export default function PlanEdit() {
   const [endTime, setEndTime] = useState(plan ? plan.end_time : 0);
   const [description, setDescription] = useState(plan ? plan.description : "");
   const handleFormSubmit = () => {
+
     let error = "";
 
     if (
@@ -43,9 +47,11 @@ export default function PlanEdit() {
       error = "Your end date must be after the start date";
     }
 
+
     if (error !== "") {
       alert(error);
     } else {
+
       const updatedPlans = plans.map((p) => {
         if (p.id === id) {
           return {
@@ -60,6 +66,7 @@ export default function PlanEdit() {
         }
         return p;
       });
+
 
       localStorage.setItem("plans", JSON.stringify(updatedPlans));
 

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,6 +17,9 @@ export default function Nav() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Daily Planner
           </Typography>
+          <Button color="inherit" component={Link} to="/">
+            Home
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
