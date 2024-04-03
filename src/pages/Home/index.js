@@ -17,24 +17,24 @@ export default function Home() {
     plansData = [];
   }
   const [plans, setPlans] = useState(plansData);
-
   // filter by date
+  //* valueof is epoch timestamp (time in seconds)
   const currentTimestamp = new Date().valueOf();
-  const next30DaysTimestamp = currentTimestamp + 1 * 24 * 3600 * 1000;
-  // upcoming plans should be within a month
+  const nextDayTimestamp = currentTimestamp + 1 * 24 * 3600 * 1000;
+  // upcoming plans should be within a day
   const todaysPlan = plansData.filter((p) => {
     // convert start date to timestamp
     const startDateInTimestamp = new Date(p.start_date).valueOf();
-    // filter the date that is within 30 days
+    // filter the date that is within 1 day
     if (
-      startDateInTimestamp > currentTimestamp &&
-      startDateInTimestamp < next30DaysTimestamp
+      // startDateInTimestamp > currentTimestamp &&
+      startDateInTimestamp < nextDayTimestamp
     ) {
       return true;
     }
-
     return false;
   });
+
   return (
     <>
       <Nav />
@@ -50,7 +50,15 @@ export default function Home() {
             {todaysPlan.map((plan) => {
               return (
                 <Grid item xs={12} sm={6} md={4} key={plan.id}>
-                  <PlanCard plan={plan} type="list" />
+                  <PlanCard
+                    plan={plan}
+                    type="list"
+                    deleteHandler={() => {
+                      const updatePlan = plans.filter((p) => p.id !== plan.id);
+                      setPlans(updatePlan);
+                      localStorage.setItem("plans", JSON.stringify(updatePlan));
+                    }}
+                  />
                 </Grid>
               );
             })}
@@ -83,18 +91,37 @@ export default function Home() {
         </Typography>
         {plans.length > 0 ? (
           <Grid container spacing={2}>
-            {plans.map((plan) => {
-              return (
-                <Grid item xs={12} sm={6} md={4} key={plan.id}>
-                  <PlanCard plan={plan} type="list" />
-                </Grid>
-              );
-            })}
+            {plans
+              .filter(
+                (plan) => plan.startDateInTimestamp < plan.nextDayTimestamp
+              )
+              .map((plan) => {
+                return (
+                  <Grid item xs={12} sm={6} md={4} key={plan.id}>
+                    <PlanCard
+                      plan={plan}
+                      type="list"
+                      deleteHandler={() => {
+                        const updatePlan = plans.filter(
+                          (p) => p.id !== plan.id
+                        );
+                        setPlans(updatePlan);
+                        localStorage.setItem(
+                          "plans",
+                          JSON.stringify(updatePlan)
+                        );
+                      }}
+                    />
+                  </Grid>
+                );
+              })}
           </Grid>
         ) : (
           <Card>
             <CardContent>
-              <Typography variant="h6">No plans added yet.</Typography>
+              <Typography variant="h6">
+                No plans for tomorrow added yet.
+              </Typography>
             </CardContent>
             <CardActions>
               <Button

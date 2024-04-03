@@ -16,7 +16,6 @@ import DescriptionIcon from "@mui/icons-material/Description";
 export default function PlanCard(props) {
   // const { planUpdates = [], onUpdate } = props;
   const { plan, type = "list", deleteHandler } = props;
-
   return (
     <Card>
       <CardContent>
