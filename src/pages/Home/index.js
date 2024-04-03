@@ -10,7 +10,11 @@ import Button from "@mui/material/Button";
 import Nav from "../../components/Nav";
 import BottomNav from "../../components/BottomNav";
 import PlanCard from "../../components/PlanCard";
+import useCustomSnackbar from "../../components/useCustomSnackbar";
+
 export default function Home() {
+  const snackbar = useCustomSnackbar();
+
   // INSTRUCTION: 1. load the plans data from local storage
   let plansData = JSON.parse(localStorage.getItem("plans"));
   if (!plansData) {
@@ -58,6 +62,9 @@ export default function Home() {
                       const updatePlan = plans.filter((p) => p.id !== plan.id);
                       setPlans(updatePlan);
                       localStorage.setItem("plans", JSON.stringify(updatePlan));
+                      snackbar.showSuccess(
+                        "Plan has been successfully been deleted."
+                      );
                     }}
                   />
                 </Grid>
@@ -118,6 +125,9 @@ export default function Home() {
                           "plans",
                           JSON.stringify(updatePlan)
                         );
+                        snackbar.showSuccess(
+                          "Plan has been successfully been deleted."
+                        );
                       }}
                     />
                   </Grid>
@@ -162,6 +172,9 @@ export default function Home() {
                       const updatePlan = plans.filter((p) => p.id !== plan.id);
                       setPlans(updatePlan);
                       localStorage.setItem("plans", JSON.stringify(updatePlan));
+                      snackbar.showSuccess(
+                        "Plan has been successfully been deleted."
+                      );
                     }}
                   />
                 </Grid>

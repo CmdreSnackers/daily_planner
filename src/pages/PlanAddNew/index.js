@@ -12,8 +12,11 @@ import Nav from "../../components/Nav";
 import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import BottomNav from "../../components/BottomNav";
+import useCustomSnackbar from "../../components/useCustomSnackbar";
 
 export default function PlanAddNew() {
+  const snackbar = useCustomSnackbar();
+
   // short method to get today's date
   const todayDate = new Date().toISOString().split("T")[0];
   const navigate = useNavigate();
@@ -33,13 +36,13 @@ export default function PlanAddNew() {
       startTime === "" ||
       endTime === ""
     ) {
-      error = "Please fill up all the details";
+      return snackbar.showWarning("Please fill out all the details");
+    } else {
     }
 
     // if (startDate > endDate) {
     //   error = "Your end date must be after the start date";
     // }
-
     // if error is not empty, trigger the error alert
     if (error !== "") {
       alert(error);
@@ -67,6 +70,8 @@ export default function PlanAddNew() {
       localStorage.setItem("plans", JSON.stringify(latestPlans));
       // 6. redirect back to home page
       navigate("/");
+      // 7. give a msg that plan has added
+      snackbar.showSuccess("Plan has been successfully added.");
     }
   };
 

@@ -13,7 +13,24 @@ import ListItemText from "@mui/material/ListItemText";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import DescriptionIcon from "@mui/icons-material/Description";
+
+import * as React from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
 export default function PlanCard(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   // const { planUpdates = [], onUpdate } = props;
   const { plan, type = "list", deleteHandler } = props;
   return (
@@ -51,7 +68,37 @@ export default function PlanCard(props) {
               <Button component={Link} to={`/plan/${plan.id}`}>
                 View Plan
               </Button>
-              <Button onClick={deleteHandler}>Delete Plan</Button>
+              <Button onClick={handleClickOpen}>Delete Plan</Button>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title" sx={{ color: "#3f51b5" }}>
+                  {"Are you sure you want to delete this plan?"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText
+                    id="alert-dialog-description"
+                    sx={{ color: "#3f51b5" }}
+                  >
+                    This action is not reversible.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} sx={{ color: "#3f51b5" }}>
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={deleteHandler}
+                    sx={{ color: "#3f51b5" }}
+                    autoFocus
+                  >
+                    Yes
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </>
           ) : (
             <Button component={Link} to={`/plan/${plan.id}/edit`}>
