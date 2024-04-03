@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 // import InputAdornment from "@mui/material/InputAdornment";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import Header from "../../components/Nav";
+import Nav from "../../components/Nav";
 import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 
@@ -74,7 +74,7 @@ export default function PlanAddNew() {
 
   return (
     <>
-      <Header />
+      <Nav />
       <Container maxWidth="sm">
         <Typography variant="h4" sx={{ color: "#3f51b5" }}>
           Add A Plan
