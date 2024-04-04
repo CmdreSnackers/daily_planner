@@ -20,6 +20,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { ToggleButton } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
 
 export default function PlanCard(props) {
   const [open, setOpen] = React.useState(false);
@@ -35,10 +37,20 @@ export default function PlanCard(props) {
   const { plan, type = "list", deleteHandler } = props;
   return (
     <Card>
+      <ToggleButton
+        value="check"
+        // selected={selected}
+        onChange={() => {
+          // setSelected(!selected);
+        }}
+      >
+        <CheckIcon />
+      </ToggleButton>
       <CardContent>
         <Typography variant="h6" sx={{ color: "#3f51b5" }}>
           {plan.name}
         </Typography>
+
         <List>
           <ListItem>
             <ListItemIcon>

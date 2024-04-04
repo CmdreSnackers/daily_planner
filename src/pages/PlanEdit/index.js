@@ -27,7 +27,7 @@ export default function PlanEdit() {
   const [startDate, setStartDate] = useState(
     plan ? plan.start_date : todayDate
   );
-  const [endDate, setEndDate] = useState(plan ? plan.end_date : todayDate);
+
   const [startTime, setStartTime] = useState(plan ? plan.start_time : 0);
   const [endTime, setEndTime] = useState(plan ? plan.end_time : 0);
   const [description, setDescription] = useState(plan ? plan.description : "");
@@ -37,7 +37,6 @@ export default function PlanEdit() {
     if (
       description === "" ||
       startDate === "" ||
-      endDate === "" ||
       startTime === "" ||
       endTime === ""
     ) {
@@ -53,7 +52,6 @@ export default function PlanEdit() {
             ...p,
             name: name,
             start_date: startDate,
-            end_date: endDate,
             start_time: startTime,
             end_time: endTime,
             description,
@@ -95,10 +93,10 @@ export default function PlanEdit() {
                   }}
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <TextField
                   type="date"
-                  label="Start Date"
+                  label="Date"
                   variant="outlined"
                   fullWidth
                   value={startDate}
@@ -107,19 +105,7 @@ export default function PlanEdit() {
                   }}
                 />
               </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  color="primary"
-                  type="date"
-                  label="End Date"
-                  variant="outlined"
-                  fullWidth
-                  value={endDate}
-                  onChange={(event) => {
-                    setEndDate(event.target.value);
-                  }}
-                />
-              </Grid>
+
               <Grid item xs={6}>
                 <TextField
                   type="time"
