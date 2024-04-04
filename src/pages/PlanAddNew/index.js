@@ -25,6 +25,7 @@ export default function PlanAddNew() {
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
   const [description, setDescription] = useState("");
+  const [is_completed, setCompleted] = useState("");
 
   const handleFormSubmit = () => {
     // 1. validate the input fields
@@ -56,6 +57,7 @@ export default function PlanAddNew() {
         start_time: startTime,
         end_time: endTime,
         description,
+        is_completed,
       };
       // 3. get the latest trips data from local storage
       let latestPlans = JSON.parse(localStorage.getItem("plans"));

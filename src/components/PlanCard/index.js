@@ -22,6 +22,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 export default function PlanCard(props) {
+  const { plan, type = "list", deleteHandler } = props;
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -31,8 +33,27 @@ export default function PlanCard(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  // const { planUpdates = [], onUpdate } = props;
-  const { plan, type = "list", deleteHandler } = props;
+  let todayDay = new Date(plan.start_date);
+  let showDay = todayDay.getDay();
+  let answerDay = "";
+  // console.log(showDay);
+
+  if (showDay === 0) {
+    answerDay = "Sunday";
+  } else if (showDay === 1) {
+    answerDay = "Monday";
+  } else if (showDay === 2) {
+    answerDay = "Tuesday";
+  } else if (showDay === 3) {
+    answerDay = "Wednesday";
+  } else if (showDay === 4) {
+    answerDay = "Thursday";
+  } else if (showDay === 5) {
+    answerDay("Friday");
+  } else if (showDay === 6) {
+    answerDay = "Saturday";
+  }
+
   return (
     <Card>
       <CardContent>
@@ -44,7 +65,7 @@ export default function PlanCard(props) {
             <ListItemIcon>
               <CalendarMonthIcon sx={{ color: "#3f51b5" }} />
             </ListItemIcon>
-            <ListItemText primary={plan.start_date} />
+            <ListItemText primary={answerDay + "  " + plan.start_date} />
           </ListItem>
           <ListItem>
             <ListItemIcon>
