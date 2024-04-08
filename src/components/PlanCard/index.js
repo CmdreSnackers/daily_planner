@@ -13,6 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import DescriptionIcon from "@mui/icons-material/Description";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
@@ -55,27 +56,31 @@ export default function PlanCard(props) {
   }
 
   return (
-    <Card>
+    <Card sx={{ backgroundColor: "white", color: "black" }}>
       <CardContent>
-        <Typography variant="h6" sx={{ color: "#3f51b5" }}>
-          {plan.name}
-        </Typography>
+        <Typography variant="h6">{plan.name}</Typography>
         <List>
           <ListItem>
             <ListItemIcon>
-              <CalendarMonthIcon sx={{ color: "#3f51b5" }} />
+              <LightModeIcon sx={{ color: "black" }} />
             </ListItemIcon>
-            <ListItemText primary={answerDay + "  " + plan.start_date} />
+            <ListItemText primary={answerDay} />
           </ListItem>
           <ListItem>
             <ListItemIcon>
-              <AccessAlarmIcon sx={{ color: "#3f51b5" }} />
+              <CalendarMonthIcon sx={{ color: "black" }} />
+            </ListItemIcon>
+            <ListItemText primary={plan.start_date} />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <AccessAlarmIcon sx={{ color: "black" }} />
             </ListItemIcon>
             <ListItemText primary={plan.start_time + " - " + plan.end_time} />
           </ListItem>
           <ListItem>
             <ListItemIcon>
-              <DescriptionIcon sx={{ color: "#3f51b5" }} />
+              <DescriptionIcon sx={{ color: "black" }} />
             </ListItemIcon>
             <ListItemText primary={plan.description} />
           </ListItem>
@@ -86,34 +91,40 @@ export default function PlanCard(props) {
           {/* conditional rendering */}
           {type === "list" ? (
             <>
-              <Button component={Link} to={`/plan/${plan.id}`}>
+              <Button
+                component={Link}
+                to={`/plan/${plan.id}`}
+                sx={{ color: "black" }}
+              >
                 View Plan
               </Button>
-              <Button onClick={handleClickOpen}>Delete Plan</Button>
+              <Button onClick={handleClickOpen} sx={{ color: "black" }}>
+                Delete Plan
+              </Button>
               <Dialog
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
               >
-                <DialogTitle id="alert-dialog-title" sx={{ color: "#3f51b5" }}>
+                <DialogTitle id="alert-dialog-title" sx={{ color: "black" }}>
                   {"Are you sure you want to delete this plan?"}
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText
                     id="alert-dialog-description"
-                    sx={{ color: "#3f51b5" }}
+                    sx={{ color: "black" }}
                   >
                     This action is not reversible.
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClose} sx={{ color: "#3f51b5" }}>
+                  <Button onClick={handleClose} sx={{ color: "black" }}>
                     Cancel
                   </Button>
                   <Button
                     onClick={deleteHandler}
-                    sx={{ color: "#3f51b5" }}
+                    sx={{ color: "black" }}
                     autoFocus
                   >
                     Yes
@@ -122,7 +133,11 @@ export default function PlanCard(props) {
               </Dialog>
             </>
           ) : (
-            <Button component={Link} to={`/plan/${plan.id}/edit`}>
+            <Button
+              component={Link}
+              to={`/plan/${plan.id}/edit`}
+              color="inherit"
+            >
               Edit Plan
             </Button>
           )}

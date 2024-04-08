@@ -78,10 +78,15 @@ export default function PlanAddNew() {
   };
 
   return (
-    <>
+    <div className="backgroundMain">
       <Nav />
-      <Container maxWidth="sm">
-        <Typography variant="h4" sx={{ color: "#3f51b5" }}>
+      <Container
+        maxWidth="sm"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ minHeight: "100vh" }}
+      >
+        <Typography variant="h4" sx={{ color: "white" }}>
           Add A Plan
         </Typography>
         <Card
@@ -161,13 +166,18 @@ export default function PlanAddNew() {
               paddingRight: "15px",
             }}
           >
-            <Button variant="contained" fullWidth onClick={handleFormSubmit}>
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={handleFormSubmit}
+              color="inherit"
+            >
               Add New
             </Button>
           </CardActions>
         </Card>
       </Container>
       <BottomNav />
-    </>
+    </div>
   );
 }

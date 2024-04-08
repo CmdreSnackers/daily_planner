@@ -11,6 +11,7 @@ import Nav from "../../components/Nav";
 import BottomNav from "../../components/BottomNav";
 import PlanCard from "../../components/PlanCard";
 import useCustomSnackbar from "../../components/useCustomSnackbar";
+
 export default function Home() {
   const snackbar = useCustomSnackbar();
 
@@ -43,13 +44,10 @@ export default function Home() {
   // let showDay = todayDay.toISOString();
 
   return (
-    <>
+    <div className="backgroundMain">
       <Nav />
       <Container sx={{ marginBottom: "80px" }}>
-        <Typography
-          variant="h3"
-          sx={{ color: "#3f51b5", marginBottom: "20px" }}
-        >
+        <Typography variant="h3" sx={{ color: "white", marginBottom: "20px" }}>
           Today's Plan
         </Typography>
         {todaysPlan.length > 0 ? (
@@ -93,10 +91,7 @@ export default function Home() {
       </Container>
 
       <Container sx={{ marginBottom: "80px" }}>
-        <Typography
-          variant="h3"
-          sx={{ color: "#3f51b5", marginBottom: "20px" }}
-        >
+        <Typography variant="h3" sx={{ color: "white", marginBottom: "20px" }}>
           All Plan's
         </Typography>
         {plans.length > 0 ? (
@@ -156,10 +151,7 @@ export default function Home() {
         )}
       </Container>
       <Container sx={{ marginBottom: "100px" }}>
-        <Typography
-          variant="h3"
-          sx={{ color: "#3f51b5", marginBottom: "20px" }}
-        >
+        <Typography variant="h3" sx={{ color: "white", marginBottom: "20px" }}>
           Uncompleted Plan's
         </Typography>
         {plans.length > 0 ? (
@@ -193,6 +185,6 @@ export default function Home() {
         )}
       </Container>
       <BottomNav />
-    </>
+    </div>
   );
 }

@@ -12,12 +12,17 @@ export default function PlanView() {
   const plan = plans.find((p) => p.id === id);
 
   return (
-    <>
+    <div className="backgroundMain">
       <Nav />
-      <Container maxWidth="sm">
+      <Container
+        maxWidth="sm"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ minHeight: "100vh" }}
+      >
         <Details plan={plan} />
       </Container>
       <BottomNav />
-    </>
+    </div>
   );
 }
