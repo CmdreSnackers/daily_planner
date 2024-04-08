@@ -67,10 +67,15 @@ export default function PlanEdit() {
     }
   };
   return (
-    <>
+    <div className="backgroundMain">
       <Header />
-      <Container maxWidth="sm">
-        <Typography variant="h4" sx={{ color: "#3f51b5" }}>
+      <Container
+        maxWidth="sm"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ minHeight: "100vh" }}
+      >
+        <Typography variant="h4" sx={{ color: "white" }}>
           Update Plan
         </Typography>
         <Card
@@ -150,13 +155,18 @@ export default function PlanEdit() {
               paddingRight: "15px",
             }}
           >
-            <Button variant="contained" fullWidth onClick={handleFormSubmit}>
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={handleFormSubmit}
+              color="inherit"
+            >
               Update Plan
             </Button>
           </CardActions>
         </Card>
       </Container>
       <BottomNav />
-    </>
+    </div>
   );
 }

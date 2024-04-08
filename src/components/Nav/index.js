@@ -13,7 +13,7 @@ export default function Nav() {
       <AppBar
         position="static"
         color=""
-        sx={{ color: "#3f51b5", marginBottom: "30px" }}
+        sx={{ color: "black", marginBottom: "30px", backgroundColor: "white" }}
       >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
