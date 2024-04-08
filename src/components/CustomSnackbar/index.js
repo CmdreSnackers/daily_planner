@@ -13,7 +13,7 @@ export default function CustomSnackbar({
 }) {
   return (
     <Snackbar
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: "top", horizontal: "center" }}
       autoHideDuration={3000}
       {...SnackbarProps}
     >

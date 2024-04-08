@@ -11,7 +11,6 @@ import Nav from "../../components/Nav";
 import BottomNav from "../../components/BottomNav";
 import PlanCard from "../../components/PlanCard";
 import useCustomSnackbar from "../../components/useCustomSnackbar";
-
 export default function Home() {
   const snackbar = useCustomSnackbar();
 
@@ -40,6 +39,9 @@ export default function Home() {
     return false;
   });
 
+  // let day = todayDay.getDate();
+  // let showDay = todayDay.toISOString();
+
   return (
     <>
       <Nav />
@@ -63,7 +65,7 @@ export default function Home() {
                       setPlans(updatePlan);
                       localStorage.setItem("plans", JSON.stringify(updatePlan));
                       snackbar.showSuccess(
-                        "Plan has been successfully been deleted."
+                        "Plan has been deleted successfully."
                       );
                     }}
                   />
@@ -126,7 +128,7 @@ export default function Home() {
                           JSON.stringify(updatePlan)
                         );
                         snackbar.showSuccess(
-                          "Plan has been successfully been deleted."
+                          "Plan has been deleted successfully."
                         );
                       }}
                     />
@@ -173,7 +175,7 @@ export default function Home() {
                       setPlans(updatePlan);
                       localStorage.setItem("plans", JSON.stringify(updatePlan));
                       snackbar.showSuccess(
-                        "Plan has been successfully been deleted."
+                        "Plan has been deleted successfully."
                       );
                     }}
                   />
