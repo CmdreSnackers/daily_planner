@@ -14,18 +14,29 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LightModeIcon from "@mui/icons-material/LightMode";
-
+import useCustomSnackbar from "../../components/useCustomSnackbar";
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import ToggleButton from "@mui/material/ToggleButton";
+import CheckIcon from "@mui/icons-material/Check";
 
 export default function PlanCard(props) {
+  const snackbar = useCustomSnackbar();
   const { plan, type = "list", deleteHandler } = props;
 
+  const plans = JSON.parse(localStorage.getItem("plans"));
+
   const [open, setOpen] = React.useState(false);
+
+  const [dark, setDark] = React.useState(false);
+
+  const [complete, setComplete] = React.useState(
+    plans ? plans.is_completed : Boolean
+  );
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,6 +45,30 @@ export default function PlanCard(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleComplete = () => {
+    let error = "";
+    if (error !== "") {
+      alert(error);
+    } else {
+      const setCompleted = plans.map((c) => {
+        if (c.id === plan.id) {
+          return {
+            ...c,
+            is_completed: true,
+          };
+        }
+        // onUpdate(true);
+        return c;
+      });
+      // setComplete(true);
+      localStorage.setItem("plans", JSON.stringify(setCompleted));
+    }
+    setDark(!dark);
+    setComplete(true);
+    snackbar.showSuccess("Plan Completed");
+  };
+
   let todayDay = new Date(plan.start_date);
   let showDay = todayDay.getDay();
   let answerDay = "";
@@ -56,7 +91,12 @@ export default function PlanCard(props) {
   }
 
   return (
-    <Card sx={{ backgroundColor: "white", color: "black" }}>
+    <Card
+      sx={{
+        backgroundColor: plan.is_completed ? "lightgrey" : "white",
+        color: "black",
+      }}
+    >
       <CardContent>
         <Typography variant="h6">{plan.name}</Typography>
         <List>
@@ -85,6 +125,34 @@ export default function PlanCard(props) {
             <ListItemText primary={plan.description} />
           </ListItem>
         </List>
+        <ToggleButton
+          fullWidth
+          value={"value"}
+          // onChange={(event, newValue) => {
+          //   setValue(newValue);
+          // }}
+          selected={complete}
+          // onClick={(plan) => {
+          //   const completedPlan = plans.map((i) => {
+          //     if (i.id === plans.id) {
+          //       return {
+          //         ...i,
+          //         is_complete: plan.is_complete ? false : true,
+          //       };
+          //     }
+
+          //     return i;
+          //   });
+          //   onUpdate(completedPlan);
+          //   console.log(completedPlan);
+          // }}
+          // onUpdate()
+          // }
+          onChange={handleComplete}
+          onClick={handleComplete}
+        >
+          <CheckIcon sx={{ width: "auto" }} />
+        </ToggleButton>
       </CardContent>
       <CardActions>
         <Box display="flex" justifyContent="center" width="100%">

@@ -1,10 +1,22 @@
-# Getting Started with Create React App
+# DailyPlanner Project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+In Addition with:
+
+[Material UI](https://mui.com)
+
+[NanoID](https://www.npmjs.com/package/nanoid)
+
+[react-router-dom](https://www.npmjs.com/package/react-router-dom)
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm i`
+
+To install the packages
 
 ### `npm start`
 
