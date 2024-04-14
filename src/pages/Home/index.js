@@ -46,6 +46,7 @@ export default function Home() {
   return (
     <div className="backgroundMain">
       <Nav />
+
       <Container sx={{ marginBottom: "80px" }}>
         <Typography variant="h3" sx={{ color: "white", marginBottom: "20px" }}>
           Today's Plan
@@ -156,24 +157,36 @@ export default function Home() {
         </Typography>
         {plans.length > 0 ? (
           <Grid container spacing={2}>
-            {plans.map((plan) => {
-              return (
-                <Grid item xs={12} sm={6} md={4} key={plan.id}>
-                  <PlanCard
-                    plan={plan}
-                    type="list"
-                    deleteHandler={() => {
-                      const updatePlan = plans.filter((p) => p.id !== plan.id);
-                      setPlans(updatePlan);
-                      localStorage.setItem("plans", JSON.stringify(updatePlan));
-                      snackbar.showSuccess(
-                        "Plan has been deleted successfully."
-                      );
-                    }}
-                  />
-                </Grid>
-              );
-            })}
+            {plans
+              .filter((p) => {
+                if (p.is_completed === true) {
+                  return false;
+                }
+                return true;
+              })
+              .map((plan) => {
+                return (
+                  <Grid item xs={12} sm={6} md={4} key={plan.id}>
+                    <PlanCard
+                      plan={plan}
+                      type="list"
+                      deleteHandler={() => {
+                        const updatePlan = plans.filter(
+                          (p) => p.id !== plan.id
+                        );
+                        setPlans(updatePlan);
+                        localStorage.setItem(
+                          "plans",
+                          JSON.stringify(updatePlan)
+                        );
+                        snackbar.showSuccess(
+                          "Plan has been deleted successfully."
+                        );
+                      }}
+                    />
+                  </Grid>
+                );
+              })}
           </Grid>
         ) : (
           <Card>

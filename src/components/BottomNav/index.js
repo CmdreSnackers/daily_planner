@@ -4,11 +4,13 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RestoreIcon from "@mui/icons-material/Restore";
 import { Link } from "react-router-dom";
-import { HouseOutlined, PlusOne } from "@mui/icons-material";
+import {
+  CheckCircleRounded,
+  HouseOutlined,
+  PlusOne,
+} from "@mui/icons-material";
 
 export default function BottomNav() {
-  const [value, setValue] = React.useState(0);
-
   return (
     <Box
       sx={{
@@ -18,23 +20,31 @@ export default function BottomNav() {
         right: 0,
       }}
     >
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      >
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+      <BottomNavigation showLabels>
         <BottomNavigationAction
+          disableTouchRipple
+          disableRipple
+          sx={{
+            color: "grey",
+          }}
           component={Link}
-          variant="outlined"
+          to="/completed"
+          label="Completed"
+          icon={<CheckCircleRounded />}
+        />
+        <BottomNavigationAction
+          disableTouchRipple
+          disableRipple
+          component={Link}
           to="/new"
+          variant="outlined"
           label="Add A Plan"
           icon={<PlusOne />}
         />
 
         <BottomNavigationAction
+          disableTouchRipple
+          disableRipple
           component={Link}
           to="/"
           label="Home"

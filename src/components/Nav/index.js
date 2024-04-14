@@ -15,12 +15,14 @@ export default function Nav() {
         sx={{ color: "black", marginBottom: "30px", backgroundColor: "white" }}
       >
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            align="center"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          >
             Daily Planner
           </Typography>
-          <Button color="inherit" component={Link} to="/">
-            Home
-          </Button>
         </Toolbar>
       </AppBar>
     </Box>

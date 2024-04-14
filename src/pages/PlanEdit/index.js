@@ -54,6 +54,7 @@ export default function PlanEdit() {
             start_time: startTime,
             end_time: endTime,
             description,
+            is_completed: false,
           };
         }
         return p;

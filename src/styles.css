@@ -46,10 +46,23 @@ canvas {
   }
 } */
 .backgroundMain {
-  background-color: grey;
+  background-color: rgb(72, 69, 69);
   padding-bottom: 20px;
 }
 .buttonColor {
-  background-color: gray;
+  background-color: grey;
   color: white;
+}
+
+.Mui-selected {
+  color: grey;
+}
+
+.MuiBottomNavigationAction-iconOnly {
+  color: grey;
+  background-color: grey;
+}
+
+.MuiBottomNavigation-root {
+  color: grey;
 }
