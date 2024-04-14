@@ -125,7 +125,39 @@ export default function PlanCard(props) {
             <ListItemText primary={plan.description} />
           </ListItem>
         </List>
-        <ToggleButton
+        {plan.is_completed === false ? (
+          <ToggleButton
+            fullWidth
+            value={"value"}
+            // onChange={(event, newValue) => {
+            //   setValue(newValue);
+            // }}
+            selected={complete}
+            // onClick={(plan) => {
+            //   const completedPlan = plans.map((i) => {
+            //     if (i.id === plans.id) {
+            //       return {
+            //         ...i,
+            //         is_complete: plan.is_complete ? false : true,
+            //       };
+            //     }
+
+            //     return i;
+            //   });
+            //   onUpdate(completedPlan);
+            //   console.log(completedPlan);
+            // }}
+            // onUpdate()
+            // }
+            onChange={handleComplete}
+            onClick={handleComplete}
+          >
+            <CheckIcon sx={{ width: "auto" }} />
+          </ToggleButton>
+        ) : (
+          false
+        )}
+        {/* <ToggleButton
           fullWidth
           value={"value"}
           // onChange={(event, newValue) => {
@@ -152,7 +184,7 @@ export default function PlanCard(props) {
           onClick={handleComplete}
         >
           <CheckIcon sx={{ width: "auto" }} />
-        </ToggleButton>
+        </ToggleButton> */}
       </CardContent>
       <CardActions>
         <Box display="flex" justifyContent="center" width="100%">
