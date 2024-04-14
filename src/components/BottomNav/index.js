@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import RestoreIcon from "@mui/icons-material/Restore";
+
 import { Link } from "react-router-dom";
 import {
   CheckCircleRounded,
@@ -28,7 +28,6 @@ export default function BottomNav() {
             color: "grey",
           }}
           component={Link}
-          to="/completed"
           label="Completed"
           icon={<CheckCircleRounded />}
         />
