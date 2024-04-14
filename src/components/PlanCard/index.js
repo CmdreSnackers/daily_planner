@@ -128,7 +128,7 @@ export default function PlanCard(props) {
         {plan.is_completed === false ? (
           <ToggleButton
             fullWidth
-            value={"value"}
+            value={dark}
             // onChange={(event, newValue) => {
             //   setValue(newValue);
             // }}
@@ -150,7 +150,7 @@ export default function PlanCard(props) {
             // onUpdate()
             // }
             onChange={handleComplete}
-            onClick={handleComplete}
+            // onClick={handleComplete}
           >
             <CheckIcon sx={{ width: "auto" }} />
           </ToggleButton>

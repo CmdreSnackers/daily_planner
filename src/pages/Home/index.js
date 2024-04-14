@@ -53,24 +53,36 @@ export default function Home() {
         </Typography>
         {todaysPlan.length > 0 ? (
           <Grid container spacing={2}>
-            {todaysPlan.map((plan) => {
-              return (
-                <Grid item xs={12} sm={6} md={4} key={plan.id}>
-                  <PlanCard
-                    plan={plan}
-                    type="list"
-                    deleteHandler={() => {
-                      const updatePlan = plans.filter((p) => p.id !== plan.id);
-                      setPlans(updatePlan);
-                      localStorage.setItem("plans", JSON.stringify(updatePlan));
-                      snackbar.showSuccess(
-                        "Plan has been deleted successfully."
-                      );
-                    }}
-                  />
-                </Grid>
-              );
-            })}
+            {todaysPlan
+              .filter((p) => {
+                if (p.is_completed === true) {
+                  return false;
+                }
+                return true;
+              })
+              .map((plan) => {
+                return (
+                  <Grid item xs={12} sm={6} md={4} key={plan.id}>
+                    <PlanCard
+                      plan={plan}
+                      type="list"
+                      deleteHandler={() => {
+                        const updatePlan = plans.filter(
+                          (p) => p.id !== plan.id
+                        );
+                        setPlans(updatePlan);
+                        localStorage.setItem(
+                          "plans",
+                          JSON.stringify(updatePlan)
+                        );
+                        snackbar.showSuccess(
+                          "Plan has been deleted successfully."
+                        );
+                      }}
+                    />
+                  </Grid>
+                );
+              })}
           </Grid>
         ) : (
           <Card>
