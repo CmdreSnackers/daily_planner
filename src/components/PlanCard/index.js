@@ -35,7 +35,8 @@ export default function PlanCard(props) {
   const [dark, setDark] = React.useState(false);
 
   const [complete, setComplete] = React.useState(
-    plans ? plans.is_completed : Boolean
+    // plans ? plans.is_completed : Boolean
+    false
   );
 
   const handleClickOpen = () => {
@@ -128,7 +129,7 @@ export default function PlanCard(props) {
         {plan.is_completed === false ? (
           <ToggleButton
             fullWidth
-            value={dark}
+            value={plan.is_completed}
             // onChange={(event, newValue) => {
             //   setValue(newValue);
             // }}
