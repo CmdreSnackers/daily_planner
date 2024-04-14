@@ -28,6 +28,7 @@ export default function BottomNav() {
             color: "grey",
           }}
           component={Link}
+          to="/complete"
           label="Completed"
           icon={<CheckCircleRounded />}
         />
