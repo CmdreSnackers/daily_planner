@@ -47,7 +47,7 @@ export default function Home() {
     <div className="backgroundMain">
       <Nav />
 
-      <Container sx={{ marginBottom: "80px" }}>
+      <Container sx={{ minHeight: "30vh", marginBottom: "80px" }}>
         <Typography variant="h3" sx={{ color: "white", marginBottom: "20px" }}>
           Today's Plan
         </Typography>
@@ -103,7 +103,7 @@ export default function Home() {
         )}
       </Container>
 
-      <Container sx={{ marginBottom: "80px" }}>
+      <Container sx={{ minHeight: "30vh", marginBottom: "80px" }}>
         <Typography variant="h3" sx={{ color: "white", marginBottom: "20px" }}>
           All Plan's
         </Typography>
@@ -163,7 +163,7 @@ export default function Home() {
           </Card>
         )}
       </Container>
-      <Container sx={{ marginBottom: "100px" }}>
+      <Container sx={{ minHeight: "30vh", marginBottom: "100px" }}>
         <Typography variant="h3" sx={{ color: "white", marginBottom: "20px" }}>
           Uncompleted Plan's
         </Typography>

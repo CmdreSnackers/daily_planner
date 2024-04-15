@@ -35,8 +35,8 @@ export default function PlanCard(props) {
   const [dark, setDark] = React.useState(false);
 
   const [complete, setComplete] = React.useState(
-    // plans ? plans.is_completed : Boolean
-    false
+    plans ? plans.is_completed : Boolean
+    // false
   );
 
   const handleClickOpen = () => {
